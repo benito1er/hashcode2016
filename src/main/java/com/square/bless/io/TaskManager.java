@@ -23,7 +23,7 @@ public class TaskManager {
 	public void load(InputStream is) {
 		Scanner scn = new Scanner(is);
 
-		String l1 = scn.next();
+		String l1 = scn.nextLine();
 		String[] l1Array = l1.split(" ");
 		int nbRows = Integer.parseInt(l1Array[0]);
 
@@ -32,23 +32,23 @@ public class TaskManager {
 		int nbTurns = Integer.parseInt(l1Array[3]);
 		int maxU = Integer.parseInt(l1Array[4]);
 
-		int nbProductType = Integer.parseInt(scn.next());
-		String[] prdTypeL = scn.next().split(" ");
+		int nbProductType = Integer.parseInt(scn.nextLine());
+		String[] prdTypeL = scn.nextLine().split(" ");
 		LinkedList<ProductType> productTypes = new LinkedList<ProductType>();
 		for (int i = 0; i < nbProductType; i++) {
 			int u = Integer.parseInt(prdTypeL[i]);
 			ProductType p = new ProductType(i, u);
 			productTypes.add(p);
 		}
-		ProductType[] pdTypeArray = (ProductType[]) (productTypes.toArray());
+		ProductType[] pdTypeArray = (productTypes.toArray(new ProductType[productTypes.size()]));
 		// TaskManager task = new TaskManager(nbRows,nbCol,nbDrones, m);
-		int nbWareHouse = Integer.parseInt(scn.next());
+		int nbWareHouse = Integer.parseInt(scn.nextLine());
 		LinkedList<Warehouse> wareHouses = new LinkedList<Warehouse>();
 		for (int i = 0; i < nbWareHouse; i++) {
-			String[] coord = scn.next().split(" ");
+			String[] coord = scn.nextLine().split(" ");
 			int x = Integer.parseInt(coord[0]);
 			int y = Integer.parseInt(coord[1]);
-			String[] pdLines = scn.next().split(" ");
+			String[] pdLines = scn.nextLine().split(" ");
 			Warehouse w = new Warehouse(x, y);
 			Map<Product, Integer> storages = new HashMap<Product, Integer>();
 			for (int j = 0; j < nbProductType; j++) {
@@ -68,10 +68,12 @@ public class TaskManager {
 		this.nbTurns = (nbTurns);
 		this.maxU = (maxU);
 		this.orders = orders;
-		this.warehouses = ((Warehouse[]) wareHouses.toArray());
+		this.warehouses = ((Warehouse[]) wareHouses.toArray(new Warehouse[wareHouses.size()]));
 
 
 		scn.close(); // => also close InputStream!
+		
+		
 	}
 
 	public void setRows(int nbRows) {
