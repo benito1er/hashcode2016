@@ -38,6 +38,7 @@ public class DataLoader {
 		
 		
 		
+		
 		// System.out.println(String.format("r:%d  s:%d  u:%d  p:%d  m:%d  ", b.rowsCount, b.rowSize, unavailableSlotsCount, b.groupsCount, b.serversCount));
 		scn.nextLine(); // ?
 	
