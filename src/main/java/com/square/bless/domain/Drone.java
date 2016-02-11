@@ -4,5 +4,6 @@ public class Drone {
 
 	int id;
 	double max;
+	double energy;
 	
 }
