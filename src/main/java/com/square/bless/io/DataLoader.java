@@ -3,8 +3,7 @@ package com.square.bless.io;
 import java.io.InputStream;
 
 public class DataLoader {
-
-    
+   
 
     public TaskManager readResource(String resourceName) {
         ClassLoader cl = Thread.currentThread().getContextClassLoader();
