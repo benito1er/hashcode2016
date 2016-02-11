@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
 
+import com.square.bless.domain.Order;
 import com.square.bless.domain.Product;
 import com.square.bless.domain.ProductType;
 import com.square.bless.domain.Warehouse;
@@ -16,6 +17,7 @@ public class TaskManager {
 	int nbDrones;
 	int nbTurns;
 	int maxU;
+	Order [] orders;
 	Warehouse[] warehouses;
 
 	public void load(InputStream is) {
@@ -57,17 +59,17 @@ public class TaskManager {
 			w.setStorages(storages);
 			wareHouses.add(w);
 		}
+		
+		Order [] orders = Order.loadAll(scn);
 
 		this.nbRows = (nbRows);
 		this.nbCol = (nbCol);
 		this.nbDrones = (nbDrones);
 		this.nbTurns = (nbTurns);
 		this.maxU = (maxU);
+		this.orders = orders;
 		this.warehouses = ((Warehouse[]) wareHouses.toArray());
 
-		// System.out.println(String.format("r:%d s:%d u:%d p:%d m:%d ",
-		// b.rowsCount, b.rowSize, unavailableSlotsCount, b.groupsCount,
-		// b.serversCount));
 
 		scn.close(); // => also close InputStream!
 	}
