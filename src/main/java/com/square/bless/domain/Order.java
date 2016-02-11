@@ -5,6 +5,8 @@ public class Order {
     int col;
     int[] products;
 
+    int completionTime;
+
     public Order(int row, int col, int[] products) {
         this.row = row;
         this.col = col;
@@ -26,5 +28,13 @@ public class Order {
             res[i] = new Order(row, col, products);
         }
         return res;
+    }
+
+    public int getCompletionTime() {
+        return completionTime;
+    }
+
+    public void setCompletionTime(int completionTime) {
+        this.completionTime = completionTime;
     }
 }

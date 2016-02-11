@@ -44,7 +44,7 @@ public class DataLoader {
 	
 		
 		scn.close(); // => also close InputStream!
-		
+
 		return task.taskManager;
 	}
 	
