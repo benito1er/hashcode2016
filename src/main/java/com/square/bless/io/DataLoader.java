@@ -31,9 +31,14 @@ public class DataLoader {
 		TaskManagerBuilder task = new  TaskManagerBuilder();
 		
 		String l1 = scn.next();
-		int nbRows = Integer.parseInt(l1.split(" ")[0]);
-		int nbCol = Integer.parseInt(l1.split(" ")[1]);
-		int nbDrones= Integer.parseInt(l1.split(" ")[2]);
+		String [] l1Array =l1.split(" ");
+		int nbRows = Integer.parseInt(l1Array[0]);
+		int nbCol = Integer.parseInt(l1Array[1]);
+		int nbDrones= Integer.parseInt(l1Array[2]);
+		
+		
+		
+		
 		
 		
 		
