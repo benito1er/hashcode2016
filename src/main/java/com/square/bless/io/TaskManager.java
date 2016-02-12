@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
 
+import com.square.bless.domain.Drone;
 import com.square.bless.domain.Order;
 import com.square.bless.domain.Product;
 import com.square.bless.domain.ProductType;
@@ -17,7 +18,9 @@ public class TaskManager {
 	int nbDrones;
 	int nbTurns;
 	int maxU;
-	Order [] orders;
+	Order[] orders;
+	Drone[] drones;
+
 	Warehouse[] warehouses;
 
 	public void load(InputStream is) {
@@ -29,6 +32,10 @@ public class TaskManager {
 
 		int nbCol = Integer.parseInt(l1Array[1]);
 		int nbDrones = Integer.parseInt(l1Array[2]);
+		this.drones = new Drone[nbDrones];
+		for (int i = 0; i < nbDrones; i++) {
+			this.drones[i] = new Drone(i);
+		}
 		int nbTurns = Integer.parseInt(l1Array[3]);
 		int maxU = Integer.parseInt(l1Array[4]);
 
@@ -59,21 +66,32 @@ public class TaskManager {
 			w.setStorages(storages);
 			wareHouses.add(w);
 		}
-		
-		Order [] orders = Order.loadAll(scn);
+		int nbOrders = Integer.parseInt(scn.nextLine());
+		this.orders = new Order[nbOrders];
+		for (int i = 0; i < 3; i++) {
+			String[] currentOrderLoc = scn.nextLine().split(" ");
+			int x = Integer.parseInt(currentOrderLoc[0]);
+			int y = Integer.parseInt(currentOrderLoc[1]);
+			int nbItems = scn.nextInt();
+			Product[] products = new Product[nbItems];
+			String[] currentOrderItems = scn.nextLine().split(" ");
+
+			for (int j = 0; j < nbItems; j++) {
+				products[j] = new Product(pdTypeArray[Integer.parseInt(currentOrderItems[j])]);
+			}
+			orders[i] = new Order(x, y, products);
+		}
 
 		this.nbRows = (nbRows);
 		this.nbCol = (nbCol);
 		this.nbDrones = (nbDrones);
 		this.nbTurns = (nbTurns);
 		this.maxU = (maxU);
-		this.orders = orders;
+
 		this.warehouses = ((Warehouse[]) wareHouses.toArray(new Warehouse[wareHouses.size()]));
 
-
 		scn.close(); // => also close InputStream!
-		
-		
+
 	}
 
 	public void setRows(int nbRows) {
@@ -106,4 +124,31 @@ public class TaskManager {
 
 	}
 
+	public int getNbRows() {
+		return nbRows;
+	}
+
+	public int getNbCol() {
+		return nbCol;
+	}
+
+	public int getNbDrones() {
+		return nbDrones;
+	}
+
+	public int getNbTurns() {
+		return nbTurns;
+	}
+
+	public int getMaxU() {
+		return maxU;
+	}
+
+	public Order[] getOrders() {
+		return orders;
+	}
+
+	public Warehouse[] getWarehouses() {
+		return warehouses;
+	}
 }
